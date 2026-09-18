@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "charge-key-automation"
+version = "0.2.0"
+description = "No-LLM jail and court charge-key automation with site-aware schemas and ensemble review." 
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "openpyxl>=3.1",
+  "pandas>=2.1",
+  "rapidfuzz>=3.6",
+  "scikit-learn>=1.4",
+  "sentence-transformers>=3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+charge-key = "charge_key_automation.cli:main"
+charge-key-app = "charge_key_automation.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
