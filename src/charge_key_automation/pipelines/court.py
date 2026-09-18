@@ -18,6 +18,7 @@ from ..matching import match_court_charge
 from ..models import positive_class_probability, train_attribute_panel
 from ..output import write_court_workbook
 from ..schemas import derive_court_columns
+from ..validation import validate_court_inputs
 
 
 @dataclass(frozen=True)
@@ -107,6 +108,7 @@ def run_court_pipeline(
     embedder: Embedder | None = None,
 ) -> CourtPipelineSummary:
     config.validate()
+    validate_court_inputs(data_dir, output_dir, config).raise_for_errors()
     data_dir = Path(data_dir)
     output_dir = Path(output_dir)
 
