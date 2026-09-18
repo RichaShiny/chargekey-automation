@@ -22,6 +22,7 @@ from ..matching import (
     train_attribute_panel,
 )
 from ..output import write_jail_intermediary_workbook
+from ..validation import validate_jail_inputs
 
 
 @dataclass(frozen=True)
@@ -74,6 +75,7 @@ def run_jail_pipeline(
     embedder: Embedder | None = None,
 ) -> JailPipelineSummary:
     config.validate()
+    validate_jail_inputs(data_dir, output_dir, config).raise_for_errors()
     data_dir = Path(data_dir)
     output_dir = Path(output_dir)
     reference_years = config.resolved_reference_years()
