@@ -1,3 +1,1 @@
-# chargekey-automation
-
-Charge key automation project. Development is managed through pull requests.
+# Charge Key Automation\n\nA clean, site-aware Python package for the ISLG charge-key automation project.\n\nThis first refactor separates jurisdiction rules, dynamic schema handling, file loading, configuration, and embeddings into a normal `src/` package. Pipeline implementations are added in follow-up pull requests.\n\n## Site-aware design\n\nThe project intentionally preserves each jurisdiction's real charge-key schema instead of forcing one global set of fields. Historical filename aliases, Spokane description casing, Buncombe missing-code handling, FTA/FTC column normalization, and helper-column cleanup are centralized and testable.\n\n## Development\n\n```bash\npython -m venv .venv\nsource .venv/bin/activate\npip install -e ".[dev]"\npytest\n```\n\nSource case-level data is not committed.\n
