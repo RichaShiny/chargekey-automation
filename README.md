@@ -51,12 +51,17 @@ retrieval experiments. Historical rows can be perturbed into noisy surface
 forms while retaining the exact source-row index as ground truth.
 
 The retrieval benchmark measures Recall@1/3/5, mean reciprocal rank, and mines
-the highest-scoring incorrect rows as hard negatives for later reranker work.
-It does not fabricate legal attributes and does not replace real out-of-time
-validation.
+the highest-scoring incorrect rows as hard negatives. A grouped pairwise
+reranker benchmark then learns from positive-vs-hard-negative feature
+differences and compares baseline versus reranked ranking on held-out reference
+groups.
 
-See [`docs/synthetic_augmentation.md`](docs/synthetic_augmentation.md) and
-[`docs/retrieval_evaluation.md`](docs/retrieval_evaluation.md).
+These experiments do not fabricate legal attributes and do not replace real
+out-of-time validation.
+
+See [`docs/synthetic_augmentation.md`](docs/synthetic_augmentation.md),
+[`docs/retrieval_evaluation.md`](docs/retrieval_evaluation.md), and
+[`docs/pairwise_reranking.md`](docs/pairwise_reranking.md).
 
 ## Repository layout
 

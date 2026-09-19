@@ -191,7 +191,7 @@ def _prepare_char_retrieval(
     ref_descs = [_text(value) for value in reference[ref_desc_col]]
     query_descs = [_text(value) for value in queries[query_desc_col]]
 
-    corpus = ref_descs if any(ref_descs) else ["EMPTY"]
+    corpus = ref_descs if any(ref_descs) else ["EMPTY"] * len(ref_descs)
     vectorizer = TfidfVectorizer(
         analyzer="char_wb",
         ngram_range=config.char_ngram_range,
