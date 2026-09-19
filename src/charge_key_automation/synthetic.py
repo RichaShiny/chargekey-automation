@@ -72,7 +72,7 @@ class SyntheticAugmentationConfig:
 def _clean_space(value: object) -> str:
     if value is None or pd.isna(value):
         return ""
-    return re.sub(r"\\s+", " ", str(value)).strip()
+    return re.sub(r"\s+", " ", str(value)).strip()
 
 
 def _abbreviate(description: str, rng: random.Random) -> tuple[str, bool]:
