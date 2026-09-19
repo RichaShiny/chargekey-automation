@@ -83,10 +83,10 @@ def test_real_holdout_reports_mapped_and_novel_rows_separately():
     assert result.summary["mapped_coverage"] == 0.5
 
     status = result.per_query.set_index("query_index")["is_mapped"].to_dict()
-    assert status["mapped_a"] is True
-    assert status["mapped_b"] is True
-    assert status["novel_missing"] is False
-    assert status["novel_2025_only"] is False
+    assert bool(status["mapped_a"]) is True
+    assert bool(status["mapped_b"]) is True
+    assert bool(status["novel_missing"]) is False
+    assert bool(status["novel_2025_only"]) is False
 
     assert set(result.training_reference_indexes) == {10, 20, 30, 40}
 
