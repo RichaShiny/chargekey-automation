@@ -69,8 +69,10 @@ class SyntheticAugmentationConfig:
             raise ValueError("variants_per_row must be at least 1")
 
 
-def _clean_space(value: str) -> str:
-    return re.sub(r"\s+", " ", str(value)).strip()
+def _clean_space(value: object) -> str:
+    if value is None or pd.isna(value):
+        return ""
+    return re.sub(r"\\s+", " ", str(value)).strip()
 
 
 def _abbreviate(description: str, rng: random.Random) -> tuple[str, bool]:
