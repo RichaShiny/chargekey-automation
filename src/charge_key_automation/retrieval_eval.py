@@ -138,6 +138,8 @@ def _rank_one_query(
     ref_descs: list[str],
     char_similarity: np.ndarray,
     config: RetrievalEvaluationConfig,
+    ref_code_col: str = "chrg_code",
+    ref_desc_col: str = "chrg_desc",
 ) -> pd.DataFrame:
     token_sort = np.asarray(
         [fuzz.token_sort_ratio(query_desc, candidate) / 100.0 for candidate in ref_descs],
@@ -170,8 +172,8 @@ def _rank_one_query(
             "token_sort_similarity": token_sort[order],
             "token_set_similarity": token_set[order],
             "char_tfidf_similarity": char_similarity[order],
-            "candidate_code": reference.iloc[order]["chrg_code"].to_numpy(),
-            "candidate_desc": reference.iloc[order]["chrg_desc"].to_numpy(),
+            "candidate_code": reference.iloc[order][ref_code_col].to_numpy(),
+            "candidate_desc": reference.iloc[order][ref_desc_col].to_numpy(),
         }
     )
     ranked.insert(0, "rank", np.arange(1, len(ranked) + 1))
@@ -249,6 +251,8 @@ def rank_query_candidates(
         ref_descs=ref_descs,
         char_similarity=char_similarity,
         config=config,
+        ref_code_col="chrg_code",
+        ref_desc_col="chrg_desc",
     )
 
 
@@ -315,6 +319,8 @@ def evaluate_candidate_retrieval(
             ref_descs=ref_descs,
             char_similarity=char_similarity,
             config=config,
+            ref_code_col=ref_code_col,
+            ref_desc_col=ref_desc_col,
         )
 
         target = query[target_col]
