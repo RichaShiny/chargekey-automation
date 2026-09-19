@@ -21,6 +21,12 @@ from .retrieval_eval import (
     rank_query_candidates,
 )
 from .synthetic import SyntheticAugmentationConfig, generate_synthetic_training_data
+from .temporal_validation import (
+    TemporalValidationConfig,
+    TemporalValidationResult,
+    evaluate_temporal_holdout,
+    fit_temporal_reranker,
+)
 
 __version__ = "0.2.0"
 
@@ -40,10 +46,14 @@ __all__ = [
     "RetrievalEvaluation",
     "RetrievalEvaluationConfig",
     "SyntheticAugmentationConfig",
+    "TemporalValidationConfig",
+    "TemporalValidationResult",
     "build_pairwise_training_data",
     "evaluate_pairwise_reranker",
     "fit_pairwise_reranker",
+    "fit_temporal_reranker",
     "evaluate_candidate_retrieval",
+    "evaluate_temporal_holdout",
     "mine_hard_negatives",
     "rank_query_candidates",
     "rerank_query_candidates",

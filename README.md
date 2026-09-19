@@ -44,7 +44,7 @@ Historical source quirks are centralized in `sites.py`, including Spokane lowerc
 See [`docs/site_schema_notes.md`](docs/site_schema_notes.md) for the exact rules.
 
 
-## Synthetic robustness evaluation
+## Robustness and temporal validation
 
 The repo also includes a leakage-aware synthetic robustness layer for candidate
 retrieval experiments. Historical rows can be perturbed into noisy surface
@@ -56,12 +56,14 @@ reranker benchmark then learns from positive-vs-hard-negative feature
 differences and compares baseline versus reranked ranking on held-out reference
 groups.
 
-These experiments do not fabricate legal attributes and do not replace real
-out-of-time validation.
+These experiments do not fabricate legal attributes. A separate temporal
+holdout layer fits only on pre-validation history and evaluates real future-year
+observations, including novel rows with no valid historical target.
 
 See [`docs/synthetic_augmentation.md`](docs/synthetic_augmentation.md),
-[`docs/retrieval_evaluation.md`](docs/retrieval_evaluation.md), and
-[`docs/pairwise_reranking.md`](docs/pairwise_reranking.md).
+[`docs/retrieval_evaluation.md`](docs/retrieval_evaluation.md),
+[`docs/pairwise_reranking.md`](docs/pairwise_reranking.md), and
+[`docs/temporal_validation.md`](docs/temporal_validation.md).
 
 ## Repository layout
 
