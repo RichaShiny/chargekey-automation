@@ -181,6 +181,7 @@ def test_extreme_margin_reviews_all_including_novel_rows():
 
 def test_non_numeric_history_years_are_rejected():
     history = _history()
+    history["source_year"] = history["source_year"].astype(object)
     history.loc[10, "source_year"] = "unknown"
 
     with pytest.raises(ValueError, match="non-numeric or missing"):
