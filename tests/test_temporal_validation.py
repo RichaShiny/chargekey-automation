@@ -204,3 +204,17 @@ def test_temporal_validation_requires_multiple_training_reference_rows():
                 negatives_per_query=1,
             ),
         )
+
+
+def test_empty_real_holdout_is_rejected():
+    empty = _real_2025_queries().iloc[0:0]
+
+    with pytest.raises(ValueError, match="at least one real observation"):
+        evaluate_temporal_holdout(
+            _history(),
+            empty,
+            config=TemporalValidationConfig(
+                variants_per_row=2,
+                negatives_per_query=2,
+            ),
+        )
