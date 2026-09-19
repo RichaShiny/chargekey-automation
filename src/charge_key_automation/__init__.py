@@ -5,6 +5,13 @@ from .pipelines import (
     run_court_pipeline,
     run_jail_pipeline,
 )
+from .retrieval_eval import (
+    RetrievalEvaluation,
+    RetrievalEvaluationConfig,
+    evaluate_candidate_retrieval,
+    mine_hard_negatives,
+    rank_query_candidates,
+)
 from .synthetic import SyntheticAugmentationConfig, generate_synthetic_training_data
 
 __version__ = "0.2.0"
@@ -20,7 +27,12 @@ __all__ = [
     "JailPipelineSummary",
     "PipelineConfig",
     "PipelineSummary",
+    "RetrievalEvaluation",
+    "RetrievalEvaluationConfig",
     "SyntheticAugmentationConfig",
+    "evaluate_candidate_retrieval",
+    "mine_hard_negatives",
+    "rank_query_candidates",
     "generate_synthetic_training_data",
     "run_court_pipeline",
     "run_jail_pipeline",

@@ -114,3 +114,21 @@ def test_missing_values_stay_blank_instead_of_becoming_nan_text():
 
     assert synthetic.loc[0, "reference_code"] == ""
     assert synthetic.loc[0, "synthetic_code"] == ""
+
+
+def test_whitespace_noise_is_collapsed_before_augmentation():
+    reference = pd.DataFrame(
+        {
+            "chrg_code": ["14-33"],
+            "chrg_desc": ["AGGRAVATED   ASSAULT\tWITH   DEADLY WEAPON"],
+            "source_year": [2024],
+        },
+        index=[77],
+    )
+
+    synthetic = generate_synthetic_training_data(
+        reference,
+        config=SyntheticAugmentationConfig(variants_per_row=1, seed=42),
+    )
+
+    assert synthetic.loc[0, "reference_desc"] == "AGGRAVATED ASSAULT WITH DEADLY WEAPON"
