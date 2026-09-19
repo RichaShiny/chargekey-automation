@@ -115,7 +115,7 @@ def _drop_low_information_token(description: str, rng: random.Random) -> tuple[s
 
 
 def _punctuation_noise(description: str, rng: random.Random) -> tuple[str, bool]:
-    positions = [i for i, ch in enumerate(description) if ch in ",;:()-.\/"]
+    positions = [i for i, ch in enumerate(description) if ch in ",;:()-./"]
     if not positions:
         return description, False
 
