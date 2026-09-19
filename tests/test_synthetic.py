@@ -95,3 +95,22 @@ def test_excluding_years_requires_year_column():
 def test_variants_per_row_must_be_positive():
     with pytest.raises(ValueError, match="variants_per_row"):
         SyntheticAugmentationConfig(variants_per_row=0)
+
+
+def test_missing_values_stay_blank_instead_of_becoming_nan_text():
+    reference = pd.DataFrame(
+        {
+            "chrg_code": [None],
+            "chrg_desc": ["ASSAULT"],
+            "source_year": [2024],
+        },
+        index=[9],
+    )
+
+    synthetic = generate_synthetic_training_data(
+        reference,
+        config=SyntheticAugmentationConfig(variants_per_row=1),
+    )
+
+    assert synthetic.loc[0, "reference_code"] == ""
+    assert synthetic.loc[0, "synthetic_code"] == ""
