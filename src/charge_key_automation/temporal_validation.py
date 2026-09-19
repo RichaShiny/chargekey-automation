@@ -98,6 +98,9 @@ def _validate_holdout(
     query_desc_col: str,
     target_col: str,
 ) -> None:
+    if validation_queries.empty:
+        raise ValueError("validation_queries must contain at least one real observation")
+
     required = {query_code_col, query_desc_col, target_col}
     missing = required - set(validation_queries.columns)
     if missing:
