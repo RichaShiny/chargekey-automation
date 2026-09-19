@@ -5,6 +5,14 @@ from .pipelines import (
     run_court_pipeline,
     run_jail_pipeline,
 )
+from .pairwise_reranker import (
+    PairwiseReranker,
+    PairwiseRerankerEvaluation,
+    build_pairwise_training_data,
+    evaluate_pairwise_reranker,
+    fit_pairwise_reranker,
+    rerank_query_candidates,
+)
 from .retrieval_eval import (
     RetrievalEvaluation,
     RetrievalEvaluationConfig,
@@ -27,12 +35,18 @@ __all__ = [
     "JailPipelineSummary",
     "PipelineConfig",
     "PipelineSummary",
+    "PairwiseReranker",
+    "PairwiseRerankerEvaluation",
     "RetrievalEvaluation",
     "RetrievalEvaluationConfig",
     "SyntheticAugmentationConfig",
+    "build_pairwise_training_data",
+    "evaluate_pairwise_reranker",
+    "fit_pairwise_reranker",
     "evaluate_candidate_retrieval",
     "mine_hard_negatives",
     "rank_query_candidates",
+    "rerank_query_candidates",
     "generate_synthetic_training_data",
     "run_court_pipeline",
     "run_jail_pipeline",
