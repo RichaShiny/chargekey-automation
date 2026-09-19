@@ -165,3 +165,19 @@ def test_reference_index_must_be_unique():
 
     with pytest.raises(ValueError, match="index must be unique"):
         evaluate_candidate_retrieval(_queries(), reference)
+
+
+def test_all_blank_reference_descriptions_preserve_candidate_alignment():
+    reference = pd.DataFrame(
+        {
+            "chrg_code": ["A1", "B2", "C3"],
+            "chrg_desc": ["", "", ""],
+        },
+        index=[10, 20, 30],
+    )
+
+    ranked = rank_query_candidates("B2", "", reference)
+
+    assert len(ranked) == len(reference)
+    assert set(ranked["candidate_index"]) == {10, 20, 30}
+    assert ranked.iloc[0]["candidate_index"] == 20
