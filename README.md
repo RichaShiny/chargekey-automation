@@ -43,6 +43,21 @@ Historical source quirks are centralized in `sites.py`, including Spokane lowerc
 
 See [`docs/site_schema_notes.md`](docs/site_schema_notes.md) for the exact rules.
 
+
+## Synthetic robustness evaluation
+
+The repo also includes a leakage-aware synthetic robustness layer for candidate
+retrieval experiments. Historical rows can be perturbed into noisy surface
+forms while retaining the exact source-row index as ground truth.
+
+The retrieval benchmark measures Recall@1/3/5, mean reciprocal rank, and mines
+the highest-scoring incorrect rows as hard negatives for later reranker work.
+It does not fabricate legal attributes and does not replace real out-of-time
+validation.
+
+See [`docs/synthetic_augmentation.md`](docs/synthetic_augmentation.md) and
+[`docs/retrieval_evaluation.md`](docs/retrieval_evaluation.md).
+
 ## Repository layout
 
 ```text
